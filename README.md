@@ -1,14 +1,12 @@
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/5c68dc65-cf60-41cc-9274-02cf75989426" />
-
-# Titanic Survival Prediction 
+# Titanic Survival Prediction
 
 Repositori ini berisi proyek analisis data dan pemodelan prediktif untuk memprediksi probabilitas keselamatan (survival) penumpang kapal Titanic berdasarkan data sosio-demografis dan detail perjalanan mereka. Proyek ini menggunakan dataset dari kompetisi populer **Titanic: Machine Learning from Disaster** di Kaggle.
 
 ## Struktur Proyek
-- **notebook.ipynb**: Notebook yang berisi alur lengkap EDA (Exploratory Data Analysis), preprocessing data, visualisasi korelasi, pelatihan model, dan evaluasi hasil.
-- **train.csv**: Dataset training yang digunakan untuk melatih model ML (berisi kolom target `Survived`).
-- **test.csv**: Dataset testing untuk menguji performa model prediksi.
-- **README.md**: Dokumentasi proyek ini.
+- notebook.ipynb: Jupyter Notebook yang berisi alur lengkap EDA (Exploratory Data Analysis), preprocessing data, visualisasi korelasi, pelatihan model, dan evaluasi hasil.
+- train.csv: Dataset training yang digunakan untuk melatih model ML (berisi kolom target `Survived`).
+- test.csv: Dataset testing untuk menguji performa model prediksi.
+- README.md: Dokumentasi proyek ini.
 
 
 ## Alur Analisis & Pemodelan
@@ -20,10 +18,11 @@ Proyek ini terstruktur ke dalam beberapa tahapan utama di dalam notebook:
   - Kolom `Age` diisi menggunakan nilai median dari data training.
   - Kolom `Embarked` diisi dengan nilai modus (stasiun keberangkatan paling sering).
 - **Feature Selection**:
-  - Menghapus kolom yang tidak relevan atau memiliki terlalu banyak kategori unik seperti `Cabin`, `PassengerId`, `Name`, dan `Ticket`.
+  - Menghapus kolom yang tidak relevan atau memiliki terlalu banyak kategori unik seperti `Cabin`, `PassengerId`, dan `Ticket`.
 - **Feature Encoding**:
+  - Mengekstrak gelar kehormatan (`Title`) dari kolom `Name` menggunakan pola regular expression (contoh: *Mr, Mrs, Miss, Master, Dr, Rev* dll.) lalu menghapus kolom asli `Name`.
   - Mengubah kolom `Sex` (kategorikal) menjadi format biner (`0` untuk laki-laki, `1` untuk perempuan).
-  - Menggunakan One-Hot Encoding (`pd.get_dummies`) pada kolom `Embarked` dengan opsi `drop_first=True` guna menghindari *dummy variable trap*.
+  - Menggunakan One-Hot Encoding (`pd.get_dummies`) pada kolom `Embarked` dan `Title` dengan opsi `drop_first=True` guna menghindari trap.
 
 ### 2. Standardisasi Fitur
 - Melakukan normalisasi skala fitur numerik menggunakan kelas `StandardScaler` dari scikit-learn pada data latih dan data uji sebelum masuk ke model klasifikasi.
@@ -35,7 +34,7 @@ Proyek ini terstruktur ke dalam beberapa tahapan utama di dalam notebook:
 Sebanyak 5 algoritma klasifikasi diuji dan dibandingkan kinerjanya:
 1. **Logistic Regression** 
 2. **Decision Tree Classifier** 
-3. **Random Forest Classifier** 
+3. **Random Forest Classifier**
 4. **K-Nearest Neighbors (KNN)**
 5. **Support Vector Classifier (SVM)**
 
@@ -46,14 +45,15 @@ Berikut adalah ringkasan akurasi dari kelima model klasifikasi yang dievaluasi p
 
 | Peringkat | Algoritma Klasifikasi | Akurasi (%) |
 | :---: | :--- | :---: |
-| 1 | **Support Vector Machine (SVM)** | **82.12%** |
-| 2 | Logistic Regression | 81.01% |
-| 3 | K-Nearest Neighbors (KNN) | 80.45% |
-| 4 | Random Forest | 79.89% |
-| 5 | Decision Tree | 78.77% |
+| 1 | **Random Forest Classifier** | **82.68%** |
+| 2 | Logistic Regression | 81.56% |
+| 3 | Support Vector Machine (SVM) | 81.01% |
+| 4 | K-Nearest Neighbors (KNN) | 80.45% |
+| 5 | Decision Tree Classifier | 77.65% |
 
-> [!NOTE]  
-> Model **Support Vector Machine (SVM / SVC)** menghasilkan performa terbaik dengan tingkat akurasi mencapai **82.12%**.
+> Model **Random Forest Classifier** menghasilkan performa terbaik dengan tingkat akurasi mencapai **82.68%**.
+
+---
 
 ## Cara Menjalankan Proyek
 
