@@ -1,3 +1,5 @@
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/5c68dc65-cf60-41cc-9274-02cf75989426" />
+
 # Titanic Survival Prediction
 
 Repositori ini berisi proyek analisis data dan pemodelan prediktif untuk memprediksi probabilitas keselamatan (survival) penumpang kapal Titanic berdasarkan data sosio-demografis dan detail perjalanan mereka. Proyek ini menggunakan dataset dari kompetisi populer **Titanic: Machine Learning from Disaster** di Kaggle.
